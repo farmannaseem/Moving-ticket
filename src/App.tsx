@@ -43,13 +43,7 @@ export default function App(): React.ReactElement {
         <Route path="/activity" element={<ProtectedRoute children={<Activity />} />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Route>
-    ),
-    {
-      future: {
-        v7_startTransition: true,
-        v7_relativeSplatPath: true
-      }
-    }
+    )
   );
 
   return (
