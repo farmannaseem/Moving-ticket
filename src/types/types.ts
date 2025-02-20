@@ -4,17 +4,15 @@ export interface User {
 }
 
 export interface Movie {
-  id: string;
+  id: number;
   name: string;
-  year: number;
   image: string;
+  year: number;
 }
 
 export interface Ticket {
-  id: string;
-  movieName: string;
-  ticketCount: number;
-  time: string;
+  id: number;
+  movieId: number;
+  userId: string;
   date: string;
-  amount: number;
 } 
