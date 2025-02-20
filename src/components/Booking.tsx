@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { FiUser } from 'react-icons/fi';
@@ -50,7 +50,7 @@ export default function Booking() {
       </BookingHeader>
       
       <MovieGrid>
-        {filteredMovies.map(movie => (
+        {filteredMovies.map((movie: Movie) => (
           <MovieCard 
             key={movie.id} 
             onClick={() => handleMovieSelect(movie)}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { 
@@ -72,7 +71,7 @@ export default function Activity() {
                 <div className="info-item">
                   <FiFilm className="icon" />
                   <span className="label">Booking ID:</span>
-                  <span className="value">{ticket.id.slice(-6).toUpperCase()}</span>
+                  <span className="value">{String(ticket.id).padStart(6, '0')}</span>
                 </div>
               </div>
             </div>

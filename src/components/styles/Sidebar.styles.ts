@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { DefaultTheme } from 'styled-components';
+
+interface ThemeProps {
+  theme: DefaultTheme;
+}
 
 export const SidebarContainer = styled.div`
   width: 280px;
@@ -47,7 +52,7 @@ export const UserInfo = styled.div`
     width: 45px;
     height: 45px;
     border-radius: 12px;
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }: ThemeProps) => theme.colors.primary};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +96,7 @@ export const NavItem = styled.div<NavItemProps>`
       transform: translateY(-50%);
       width: 4px;
       height: 20px;
-      background: ${({ theme }) => theme.colors.primary};
+      background: ${({ theme }: ThemeProps) => theme.colors.primary};
       border-radius: 0 4px 4px 0;
     }
   `}

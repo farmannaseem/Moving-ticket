@@ -15,4 +15,8 @@ export interface Ticket {
   movieId: number;
   userId: string;
   date: string;
+  movieName: string;
+  ticketCount: number;
+  time: string;
+  amount: number;
 } 

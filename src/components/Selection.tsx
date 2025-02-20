@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
@@ -10,10 +9,11 @@ import {
   MovieDetails,
   BookingForm
 } from './styles/Selection.styles';
+import { Ticket } from '../types/types';
 
 export default function Selection() {
   const navigate = useNavigate();
-  const { selectedMovie, addTicket } = useApp();
+  const { selectedMovie, addTicket, user } = useApp();
   const [loading, setLoading] = useState(false);
   
   const [ticketCount, setTicketCount] = useState(1);
@@ -36,13 +36,15 @@ export default function Selection() {
   const handleBooking = async () => {
     setLoading(true);
     
-    const newTicket = {
-      id: Date.now().toString(),
-      movieName: selectedMovie.name,
-      ticketCount,
-      time,
-      date,
-      amount: totalPrice
+    const newTicket: Ticket = {
+      id: Date.now(),
+      movieId: selectedMovie?.id || 0,
+      userId: user.username,
+      movieName: selectedMovie?.name || '',
+      ticketCount: ticketCount,
+      time: time,
+      date: date,
+      amount: ticketCount * 25
     };
 
     // Simulate API call
