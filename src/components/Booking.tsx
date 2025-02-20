@@ -1,23 +1,22 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { FiSearch, FiLogOut, FiUser } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 import { DUMMY_MOVIES } from '../data/movies';
 import { Movie } from '../types/types';
+import Header from './Header';
 import { 
   BookingContainer, 
-  Header,
-  SearchBar, 
+  Header as BookingHeader,
   MovieGrid, 
   MovieCard,
-  NavHeader
+  UserSection
 } from './styles/Booking.styles';
 
 export default function Booking() {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
-  const { setSelectedMovie, user, setUser } = useApp();
+  const { setSelectedMovie } = useApp();
 
   const filteredMovies = DUMMY_MOVIES.filter(movie =>
     movie.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -28,46 +27,27 @@ export default function Booking() {
     navigate('/selection');
   };
 
-  const handleLogout = () => {
-    setUser({ username: '', isAuthenticated: false });
-    navigate('/login');
-  };
-
   return (
     <BookingContainer>
-      <NavHeader>
-        <div className="nav-content">
-          <div className="logo">
-            MovieTickets
-          </div>
-          <div className="user-section">
-            <div className="user-info">
-              <div className="username">
-                <FiUser /> {user.username}
-              </div>
-              <div className="role">Member</div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        
+        <UserSection>
+          <div className="user-info">
+            <div className="avatar">
+              <FiUser />
             </div>
-            <button className="logout-btn" onClick={handleLogout}>
-              <FiLogOut className="icon" />
-              Logout
-            </button>
+            <div className="username">
+              <span className="name">Naval</span>
+              <span className="handle">ravikant</span>
+            </div>
           </div>
-        </div>
-      </NavHeader>
+        </UserSection>
+      </div>
 
-      <Header>
-        <h1>Movie Selection</h1>
-      </Header>
-      
-      <SearchBar>
-        <FiSearch />
-        <input
-          type="text"
-          placeholder="Search for movies..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </SearchBar>
+      <BookingHeader>
+        <h1>Good Morning Mr. Naval Ravikant</h1>
+      </BookingHeader>
       
       <MovieGrid>
         {filteredMovies.map(movie => (

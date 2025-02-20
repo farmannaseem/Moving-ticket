@@ -2,19 +2,19 @@ export const theme = {
   colors: {
     primary: '#4A90E2',
     secondary: '#F5A623',
-    background: '#1A1A1A',
-    surface: '#2A2A2A',
+    background: '#FFFFFF',
+    surface: '#F8F9FA',
     text: {
-      primary: '#FFFFFF',
-      secondary: '#888888'
+      primary: '#1A1A1A',
+      secondary: '#6C757D'
     },
-    border: '#3A3A3A',
-    error: '#FF4D4F',
-    success: '#52C41A'
+    border: '#DEE2E6',
+    error: '#DC3545',
+    success: '#28A745'
   },
   shadows: {
-    card: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    hover: '0 8px 12px rgba(0, 0, 0, 0.2)'
+    card: '0 2px 4px rgba(0, 0, 0, 0.05)',
+    hover: '0 4px 12px rgba(0, 0, 0, 0.1)'
   },
   transitions: {
     default: 'all 0.3s ease'

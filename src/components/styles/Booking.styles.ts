@@ -3,40 +3,36 @@ import styled from 'styled-components';
 export const BookingContainer = styled.div`
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.background};
-  padding: 2rem;
+  padding: 1.5rem;
 `;
 
 export const Header = styled.header`
   max-width: 1200px;
-  margin: 0 auto 3rem;
-  padding: 0 1rem;
+  margin: 0 auto 1.5rem;
+  padding: 0 0.8rem;
 
   h1 {
     color: ${({ theme }) => theme.colors.text.primary};
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
   }
 `;
 
 export const SearchBar = styled.div`
   max-width: 600px;
-  margin: 0 auto 3rem;
   position: relative;
   
   input {
     width: 100%;
-    padding: 16px 24px;
-    padding-left: 50px;
-    border-radius: 12px;
-    border: 2px solid ${({ theme }) => theme.colors.border};
+    padding: 12px 20px;
+    padding-right: 45px;
+    border-radius: 10px;
+    border: 1px solid ${({ theme }) => theme.colors.border};
     background: ${({ theme }) => theme.colors.surface};
     color: ${({ theme }) => theme.colors.text.primary};
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: ${({ theme }) => theme.transitions.default};
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.text.secondary};
-    }
 
     &:focus {
       outline: none;
@@ -47,11 +43,17 @@ export const SearchBar = styled.div`
 
   svg {
     position: absolute;
-    left: 16px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     color: ${({ theme }) => theme.colors.text.secondary};
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
 `;
 
@@ -59,14 +61,19 @@ export const MovieGrid = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.2rem;
+  padding: 0.8rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
 `;
 
 export const MovieCard = styled.div`
   background: ${({ theme }) => theme.colors.surface};
-  border-radius: 16px;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   transition: ${({ theme }) => theme.transitions.default};
@@ -74,7 +81,7 @@ export const MovieCard = styled.div`
 
   .image-container {
     position: relative;
-    padding-top: 150%;
+    padding-top: 140%;
     overflow: hidden;
 
     img {
@@ -89,24 +96,21 @@ export const MovieCard = styled.div`
   }
 
   .content {
-    padding: 1.5rem;
+    padding: 1rem;
 
     h3 {
-      color: ${({ theme }) => theme.colors.text.primary};
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
       font-weight: 600;
     }
 
     .year {
-      color: ${({ theme }) => theme.colors.text.secondary};
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
   }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: ${({ theme }) => theme.shadows.hover};
+    transform: translateY(-4px);
 
     img {
       transform: scale(1.05);
@@ -115,65 +119,119 @@ export const MovieCard = styled.div`
 `;
 
 export const NavHeader = styled.nav`
-  background: ${({ theme }) => theme.colors.surface};
   padding: 1rem 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
 
   .nav-content {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    color: ${({ theme }) => theme.colors.text.primary};
-    font-size: 1.5rem;
-    font-weight: 600;
+    justify-content: flex-end;
   }
 
   .user-section {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    padding: 8px 16px;
+    background: ${({ theme }) => theme.colors.surface};
+    border-radius: 12px;
+    box-shadow: ${({ theme }) => theme.shadows.card};
+    transition: ${({ theme }) => theme.transitions.default};
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: ${({ theme }) => theme.shadows.hover};
+    }
 
     .user-info {
-      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: ${({ theme }) => theme.colors.primary};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 20px;
+          height: 20px;
+          color: white;
+        }
+      }
 
       .username {
         color: ${({ theme }) => theme.colors.text.primary};
-        font-weight: 500;
+        font-size: 0.95rem;
+        font-weight: 600;
       }
+    }
+  }
+`;
 
-      .role {
-        color: ${({ theme }) => theme.colors.text.secondary};
-        font-size: 0.8rem;
+export const UserSection = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: ${({ theme }) => theme.colors.primary};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+      box-shadow: 0 2px 8px ${({ theme }) => `${theme.colors.primary}40`};
+      overflow: hidden;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        color: white;
+        stroke-width: 2;
       }
     }
 
-    .logout-btn {
-      padding: 0.5rem 1rem;
-      background: ${({ theme }) => theme.colors.error};
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
+    .username {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: ${({ theme }) => theme.transitions.default};
+      flex-direction: column;
+      gap: 1px;
 
-      &:hover {
-        background: ${({ theme }) => `${theme.colors.error}dd`};
-        transform: translateY(-1px);
+      .name {
+        color: ${({ theme }) => theme.colors.text.primary};
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: -0.3px;
       }
 
-      .icon {
-        font-size: 1.1rem;
+      .handle {
+        color: ${({ theme }) => theme.colors.text.secondary};
+        font-size: 0.7rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .user-info {
+      .username {
+        .name {
+          font-size: 0.8rem;
+        }
+        .handle {
+          font-size: 0.65rem;
+        }
       }
     }
   }

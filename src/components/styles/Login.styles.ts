@@ -11,79 +11,105 @@ export const LoginContainer = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.colors.background};
-  padding: 1rem;
-  position: relative;
-  overflow: hidden;
+  padding: 2rem;
+`;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 200px;
-    background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.secondary});
-    transform: skewY(-5deg) translateY(-100px);
+export const LoginCard = styled.div`
+  width: 100%;
+  max-width: 340px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+  .logo {
+    span {
+      color: white;
+    }
+  }
+
+  input {
+    background: white !important;
+    border-color: #2a2a2a !important;
+    color: #333 !important;
+    padding: 10px 16px;
+    padding-left: 40px;
+
+    &::placeholder {
+      color: #999;
+    }
+
+    &:focus {
+      border-color: ${({ theme }) => theme.colors.primary} !important;
+      box-shadow: 0 0 0 3px ${({ theme }) => `${theme.colors.primary}33`};
+    }
+  }
+
+  .icon {
+    color: #666 !important;
+    font-size: 1rem;
+  }
+`;
+
+export const LoginHeader = styled.div`
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .globe-icon {
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.colors.primary};
+      display: flex;
+    }
+
+    span {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
   }
 `;
 
 export const LoginForm = styled.form`
-  width: 100%;
-  max-width: 420px;
-  padding: 2.5rem;
-  background: ${({ theme }) => theme.colors.surface};
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  animation: ${fadeIn} 0.6s ease;
-  position: relative;
-  z-index: 1;
-
-  .header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-
-    h1 {
-      color: ${({ theme }) => theme.colors.text.primary};
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      color: ${({ theme }) => theme.colors.text.secondary};
-      font-size: 0.95rem;
-    }
-  }
-
-  .input-group {
-    margin-bottom: 1.5rem;
-    position: relative;
-
-    label {
-      display: block;
-      color: ${({ theme }) => theme.colors.text.primary};
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
+  .form-group {
+    margin-bottom: 1.2rem;
 
     .input-wrapper {
       position: relative;
 
+      .icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+        font-size: 1.1rem;
+        z-index: 1;
+      }
+
       input {
         width: 100%;
         padding: 12px 16px;
-        padding-left: 40px;
-        background: ${({ theme }) => theme.colors.background};
-        border: 2px solid ${({ theme }) => theme.colors.border};
-        border-radius: 10px;
-        color: ${({ theme }) => theme.colors.text.primary};
-        font-size: 1rem;
-        transition: all 0.3s ease;
+        padding-left: 45px;
+        border: 2px solid #2a2a2a;
+        border-radius: 8px;
+        background: white !important;
+        color: #333 !important;
+        font-size: 0.95rem;
+        transition: ${({ theme }) => theme.transitions.default};
 
         &::placeholder {
-          color: ${({ theme }) => theme.colors.text.secondary};
-          opacity: 0.7;
+          color: #999;
         }
 
         &:focus {
@@ -92,38 +118,25 @@ export const LoginForm = styled.form`
           box-shadow: 0 0 0 3px ${({ theme }) => `${theme.colors.primary}33`};
         }
       }
-
-      .icon {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: ${({ theme }) => theme.colors.text.secondary};
-        font-size: 1.2rem;
-      }
     }
   }
 
   button {
     width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.secondary});
+    padding: 12px;
+    background: ${({ theme }) => theme.colors.primary};
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 2rem;
+    transition: ${({ theme }) => theme.transitions.default};
+    margin-top: 0.5rem;
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px ${({ theme }) => `${theme.colors.primary}66`};
-    }
-
-    &:active {
-      transform: translateY(0);
+      opacity: 0.9;
+      transform: translateY(-1px);
     }
   }
 `; 

@@ -27,7 +27,10 @@ export function AppProvider({ children }: AppProviderProps) {
     return savedTickets ? JSON.parse(savedTickets) : [];
   });
 
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(() => {
+    const savedMovie = localStorage.getItem('selectedMovie');
+    return savedMovie ? JSON.parse(savedMovie) : null;
+  });
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(user));
@@ -36,6 +39,21 @@ export function AppProvider({ children }: AppProviderProps) {
   useEffect(() => {
     localStorage.setItem('tickets', JSON.stringify(tickets));
   }, [tickets]);
+
+  useEffect(() => {
+    if (selectedMovie) {
+      localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+    } else {
+      localStorage.removeItem('selectedMovie');
+    }
+  }, [selectedMovie]);
+
+  useEffect(() => {
+    if (!user.isAuthenticated) {
+      setSelectedMovie(null);
+      localStorage.removeItem('selectedMovie');
+    }
+  }, [user.isAuthenticated]);
 
   const addTicket = (ticket: Ticket) => {
     setTickets(prev => [...prev, ticket]);
