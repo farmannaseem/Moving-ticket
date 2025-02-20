@@ -1,3 +1,8 @@
+export interface User {
+  username: string;
+  isAuthenticated: boolean;
+}
+
 export interface Movie {
   id: string;
   name: string;
@@ -12,9 +17,4 @@ export interface Ticket {
   time: string;
   date: string;
   amount: number;
-}
-
-export interface User {
-  username: string;
-  isAuthenticated: boolean;
 } 

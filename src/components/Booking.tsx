@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { FiSearch, FiLogOut, FiUser } from 'react-icons/fi';
 import { DUMMY_MOVIES } from '../data/movies';
+import { Movie } from '../types/types';
 import { 
   BookingContainer, 
   Header,
